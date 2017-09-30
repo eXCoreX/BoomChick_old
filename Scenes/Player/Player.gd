@@ -2,6 +2,7 @@ extends KinematicBody2D
 
 const speed = 200;
 const gravity = 20;
+const jumpstartvelocity=100;
 
 func _ready():
 	set_process(true);
@@ -16,8 +17,12 @@ func _process(delta):
 	if(Input.is_action_pressed("Right")):
 		vel.x = speed*delta;
 		pass
+		
+	if(Input.is_action_pressed("up") && is_colliding()):
+		vel.y = jumpstartvelocity;
+		pass
 	
-	vel.y = gravity*delta;
+	vel.y += gravity*delta;
 	if(is_colliding()):
 		vel = vel.slide(get_collision_normal());
 	
