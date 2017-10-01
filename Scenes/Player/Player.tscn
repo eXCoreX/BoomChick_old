@@ -1,6 +1,8 @@
-[gd_scene load_steps=3 format=1]
+[gd_scene load_steps=5 format=1]
 
 [ext_resource path="res://Scenes/Player/Player.gd" type="Script" id=1]
+[ext_resource path="res://chick v1.png" type="Texture" id=2]
+[ext_resource path="res://boomstick.png" type="Texture" id=3]
 
 [sub_resource type="CircleShape2D" id=1]
 
@@ -23,5 +25,14 @@ script/script = ExtResource( 1 )
 shape = SubResource( 1 )
 trigger = false
 _update_shape_index = 0
+
+[node name="Chick" type="Sprite" parent="."]
+
+texture = ExtResource( 2 )
+
+[node name="BoomStick" type="Sprite" parent="."]
+
+transform/pos = Vector2( -14.3356, 1.3986 )
+texture = ExtResource( 3 )
 
 
