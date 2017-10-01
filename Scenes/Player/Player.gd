@@ -5,7 +5,7 @@ const verticalAcceleration = 50;
 const maxGravity = 200;
 const horizontalAcceleration = 100;
 const jumpstartvelocity = 100;
-
+var isLeft = true;
 var acceleration = Vector2(0,0);
 
 func _ready():
@@ -13,7 +13,26 @@ func _ready():
 	pass
 
 func _process(delta):
+	var mpos = get_viewport().get_mouse_pos();
+	#get_node("BoomStick").look_at(mpos);
+	var angle = get_node("BoomStick").get_angle_to(mpos);
+	#if(!isLeft):
+	#	angle = -angle;
+	#print(angle);
+	print(get_node("BoomStick").get_global_rot()*180/PI)
+	var totalangle = (angle+get_node("BoomStick").get_global_rot())*180/PI;
+	if(isLeft):
+		angle = angle;
+	
+	if(!(totalangle < 0 && totalangle > -180)):
+		scale(Vector2(-1.0, 1.0));
+		isLeft = false;
+	else:
+		scale(Vector2(1.0, 1.0));
+		isLeft = true;
+	get_node("BoomStick").rotate(angle+(0.5*PI));
 	var vel = Vector2(0,0);
+	
 	if(Input.is_action_pressed("Left")):
 		#vel.x = -speed*delta;
 		acceleration.x += -horizontalAcceleration*delta;

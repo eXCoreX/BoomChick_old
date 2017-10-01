@@ -7,7 +7,7 @@ extends Sprite
 
 func _process(delta):
 	var mpos = get_viewport().get_mouse_pos()
-	look.at(mpos)
+	look_at(mpos)
 	pass
 
 
