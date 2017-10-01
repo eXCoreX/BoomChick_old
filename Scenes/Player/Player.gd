@@ -7,7 +7,6 @@ const horizontalAcceleration = 100;
 const jumpstartvelocity = 100;
 var isLeft = true;
 var acceleration = Vector2(0,0);
-
 func _ready():
 	set_process(true);
 	pass
@@ -19,17 +18,23 @@ func _process(delta):
 	#if(!isLeft):
 	#	angle = -angle;
 	#print(angle);
-	print(get_node("BoomStick").get_global_rot()*180/PI)
 	var totalangle = (angle+get_node("BoomStick").get_global_rot())*180/PI;
-	if(isLeft):
-		angle = angle;
+	print(totalangle)
+	#if(!isLeft):
+	#	totalangle = -totalangle;
 	
-	if(!(totalangle < 0 && totalangle > -180)):
-		scale(Vector2(-1.0, 1.0));
-		isLeft = false;
-	else:
-		scale(Vector2(1.0, 1.0));
-		isLeft = true;
+	if(!(totalangle < 20 && totalangle > -200)):
+		if(isLeft):
+			scale(Vector2(1.0, 1.0));
+		else:
+			scale(Vector2(-1.0, 1.0));
+		isLeft = !isLeft;
+	#if(!(totalangle < 0 && totalangle > -180)):
+	#	scale(Vector2(-1.0, 1.0));
+	#	isLeft = false;
+	#else:
+	#	scale(Vector2(1.0, 1.0));
+	#	isLeft = true;
 	get_node("BoomStick").rotate(angle+(0.5*PI));
 	var vel = Vector2(0,0);
 	
