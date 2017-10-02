@@ -13,26 +13,27 @@ radius = 10.0
 
 input/pickable = false
 shapes/0/shape = SubResource( 1 )
-shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
+shapes/0/transform = Matrix32( 1, 0, 0, 1, 9.5, -3 )
 shapes/0/trigger = false
 collision/layers = 1
 collision/mask = 1
 collision/margin = 0.08
 script/script = ExtResource( 1 )
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-
-shape = SubResource( 1 )
-trigger = false
-_update_shape_index = 0
-
 [node name="Chick" type="Sprite" parent="."]
 
+transform/pos = Vector2( 9.5, -3 )
 texture = ExtResource( 2 )
 
 [node name="BoomStick" type="Sprite" parent="."]
 
-transform/pos = Vector2( -8.4205, 4.06619 )
 texture = ExtResource( 3 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+
+transform/pos = Vector2( 9.5, -3 )
+shape = SubResource( 1 )
+trigger = false
+_update_shape_index = 0
 
 
