@@ -22,10 +22,14 @@ func _process(delta):
 		scale(Vector2(-1.0, 1.0)); #Right
 	else:
 		scale(Vector2(1.0, 1.0)); #Left
-		
-	var angle = get_angle_to(mpos)+(0.5*PI); #Find rotation angle
-	angle = clamp(angle, -PI/2, PI/2); #Removes odd rotations
-	Weapon.set_rot(angle); #Rotate
+	
+	Weapon.set_rot(0)
+	
+	var angle = Weapon.get_angle_to(mpos)+(0.5*PI); #Find rotation angle
+	#angle = clamp(angle, -(PI*0.511), (PI*0.511)); #Removes odd rotations
+	angle = angle*180/PI;
+	print(angle)
+	Weapon.set_rotd(angle); #Rotate
 	
 	#YEAH BITCH, SCIENCE!
 	
