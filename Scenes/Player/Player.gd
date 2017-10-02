@@ -34,7 +34,6 @@ func _process(delta):
 	#YEAH BITCH, SCIENCE!
 	
 	#Movement
-
 	var vel = Vector2(0,0);
 	
 	if(Input.is_action_pressed("Left")):
