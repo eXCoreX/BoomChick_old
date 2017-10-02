@@ -5,40 +5,33 @@ const verticalAcceleration = 50;
 const maxGravity = 200;
 const horizontalAcceleration = 100;
 const jumpstartvelocity = 100;
-const rotateOffset = 0.02
-var isLeft = true;
-var isLeftFp = true;
+
+onready var Weapon = get_node("BoomStick");
+
 var acceleration = Vector2(0,0);
+
 func _ready():
 	set_process(true);
 	pass
 
 func _process(delta):
-	var mpos = get_viewport().get_mouse_pos();
 
-	#get_node("BoomStick").look_at(mpos);
-	var angle = get_node("BoomStick").get_angle_to(mpos);
-	#if(!isLeft):
-	#	angle = -angle;
-	#print(angle);
-	var totalangle = (angle+get_node("BoomStick").get_global_rot())*180/PI;
-	print(totalangle)
-	#if(!isLeft):
-	#	totalangle = -totalangle;
+	#Aiming
+	var mpos = get_viewport().get_mouse_pos();#Find mouse pos
 	
-	if(!(totalangle < 20 && totalangle > -200)):
-		if(isLeft):
-			scale(Vector2(1.0, 1.0));
-		else:
-			scale(Vector2(-1.0, 1.0));
-		isLeft = !isLeft;
-	#if(!(totalangle < 0 && totalangle > -180)):
-	#	scale(Vector2(-1.0, 1.0));
-	#	isLeft = false;
-	#else:
-	#	scale(Vector2(1.0, 1.0));
-	#	isLeft = true;
-	get_node("BoomStick").rotate(angle+(0.5*PI));
+	
+	if((get_pos()-mpos).x < 0): #Where is the mouse relative to parent 
+		scale(Vector2(-1.0, 1.0)); #Right
+	else:
+		scale(Vector2(1.0, 1.0)); #Left
+		
+	var angle = get_angle_to(mpos)+(0.5*PI); #Find rotation angle
+	angle = clamp(angle, -PI/2, PI/2); #Removes odd rotations
+	Weapon.set_rot(angle); #Rotate
+	
+	#YEAH BITCH, SCIENCE!
+	
+	#Movement
 
 	var vel = Vector2(0,0);
 	
